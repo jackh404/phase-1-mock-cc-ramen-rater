@@ -1,6 +1,11 @@
 const menu = document.getElementById("ramen-menu")
 const form = document.getElementById("new-ramen")
 
+form.addEventListener("submit",(e)=>{
+    e.preventDefault()
+    addRamen()
+})
+
 const renderRamen = (ramen) => {
     const image = document.createElement("img")
     image.setAttribute("src",ramen.image)
@@ -32,5 +37,27 @@ const showDetail = (ramen) => {
     document.getElementById("comment-display").textContent = ramen.comment
 }
 
+const addRamen = () => {
+    const newRamen = {
+      "name": form.name.value,
+      "restaurant": form.restaurant.value,
+      "image": form.image.value,
+      "rating": form.rating.value,
+      "comment": form['new-comment'].value
+    }
+    console.log(postConfig(newRamen))
+    fetch("http://localhost:3000/ramens",() => postConfig(newRamen))
+}
+
+const postConfig = (obj) => {
+    return {
+        method: "POST",
+        headers: {
+            "Content-Type" : "application/json",
+            Accept : "application/json"
+        },
+        body: JSON.stringify(obj)
+    }
+}
 
 fetchRamen()
