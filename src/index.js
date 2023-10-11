@@ -46,7 +46,7 @@ const addRamen = () => {
       "comment": form['new-comment'].value
     }
     console.log(postConfig(newRamen))
-    fetch("http://localhost:3000/ramens",() => postConfig(newRamen))
+    fetch("http://localhost:3000/ramens",postConfig(newRamen)).then(form.reset())
 }
 
 const postConfig = (obj) => {
