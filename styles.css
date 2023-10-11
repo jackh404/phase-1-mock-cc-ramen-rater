@@ -100,3 +100,9 @@ form h4 {
   color: white;
   background-color: black;
 }
+
+#edit-delete{
+  text-align: right;
+  position:absolute;
+  right: 0px
+}
